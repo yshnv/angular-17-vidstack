@@ -1,6 +1,9 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -11,11 +14,11 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 20
-      - name: Build and Deploy
+      - name: Install and Build
+          npm install && npm run build:prod
+      - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: dist/angular-17-vidstack
-          BUILD_SCRIPT: npm install && npm run build:prod
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: gh-pages
+          folder: dist/angular-17-vidstack
