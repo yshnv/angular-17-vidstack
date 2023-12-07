@@ -14,7 +14,9 @@ jobs:
         with:
           node-version: 20
       - name: Install and Build
-          npm install && npm run build:prod
+        run: |
+          npm install
+          npm run build:prod
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
