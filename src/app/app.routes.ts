@@ -8,10 +8,9 @@ export const routes: Routes = [
     component: AppComponent,
     children: [
       {
-        path: 'video-player',
+        path: '',
         component: VideoPlayerComponent,
       },
-      { path: '', redirectTo: 'video-player', pathMatch: 'full' },
     ],
   },
 ];
